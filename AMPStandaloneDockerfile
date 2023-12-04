@@ -1,6 +1,6 @@
 # AMP Standalone Dockerfile
 
-FROM debian:10-slim
+FROM debian:12-slim
 
 EXPOSE 8080-8180
 EXPOSE 5678-5688

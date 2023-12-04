@@ -1,0 +1,10 @@
+FROM cubecoders/ampbase
+
+RUN apt-get update && apt-get -y upgrade && \
+	apt-get install -y xvfb mono-complete nodejs npm python3-pip golang-go && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/* \
+    export NODE_ENV=production
+
+ENTRYPOINT ["/ampstart.sh"]
+CMD []
