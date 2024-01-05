@@ -5,10 +5,15 @@ RUN cd /tmp/ \
     && tar -xvf Python-3.12.1.tgz \
     && cd Python-3.12.1 \
     && apt update \
-    && apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget python3-pip \
+<<<<<<< HEAD
+    && apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget python3-pip python3-venv \
+=======
+    && apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget python3-pip python3.11-venv \
+>>>>>>> 773e88d881f9f684e92726724ca9c799a09bfc10
     && ./configure --enable-optimizations \
     && make -j 4 \
-    && make altinstall
+    && make altinstall \
+    && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/ampstart.sh"]
 CMD []
