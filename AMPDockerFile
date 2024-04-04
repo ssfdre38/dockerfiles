@@ -10,28 +10,31 @@ RUN mkdir -p /usr/share/man/man1 && \
     export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install -y \
-	numactl \
-	gnupg \
-	locales \
-	software-properties-common \
+        numactl \
+        gnupg \
+        locales \
+        software-properties-common \
         lib32gcc-s1 \
-	libc++-dev \
+        libc++-dev \
         coreutils \
         inetutils-ping \
+        iproute2 \
         tmux \
         socat \
         unzip \
         wget \
-	procps \
-	libsqlite3-0 \
-	git git-lfs \
-	curl \
-	gdb \
-	xz-utils \
-	bzip2 \
-	libzstd1 \
-	libgdiplus \
-        lib32stdc++6 libc6 libatomic1 libpulse-dev \ 
+        procps \
+        libsqlite3-0 \
+        jq \
+        git \
+        git-lfs \
+        curl \
+        gdb \
+        xz-utils \
+        bzip2 \
+        libzstd1 \
+        libgdiplus \
+        lib32stdc++6 libc6 libatomic1 libpulse-dev liblua5.3-0 \
         lib32z1 libncurses5:i386 libbz2-1.0:i386 libtinfo5:i386 libcurl3-gnutls:i386 libsdl2-2.0-0:i386 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
