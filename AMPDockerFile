@@ -1,6 +1,6 @@
 # AMP Dockerfile
 
-FROM debian:12-slim
+FROM debian:12-slim, 12.5-slim, bookworm-20240408-slim, bookworm-slim
 
 ENV AMP_CONTAINER="DOCKER"
 ENV LD_LIBRARY_PATH="./:/opt/cubecoders/amp/:/AMP/"
@@ -41,8 +41,14 @@ RUN mkdir -p /usr/share/man/man1 && \
     sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
     locale-gen && \
     wget -q https://repo.cubecoders.com/ampinstmgr-latest.tgz && \
-    tar -xf ampinstmgr-latest.tgz -C / && \
-    rm ampinstmgr-latest.tgz
+    tar -xf ampinstmgr-latest.tgz -C && \
+    rm ampinstmgr-latest.tgz && \
+    cd /opt/cubecoders/amp && \
+    devBuildNum=$(wget -qO- https://downloads.cubecoders.com/AMP/manifest.json | jq -r .streams.Development.versions[0].latestBuild) && \
+    rm ampinstmgr_x86_64.zip && \
+    wget "https://downloads.cubecoders.com/AMP/Development/${devBuildNum}/ampinstmgr_x86_64.zip" && \
+    echo A | unzip ampinstmgr_x86_64.zip && \
+    chmod +x ./ampinstmgr
 
 ENV LANG="en_US.UTF-8"
 ENV LANGUAGE="en_US:en"

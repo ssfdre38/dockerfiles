@@ -1,6 +1,6 @@
 # AMP Standalone Dockerfile
 
-FROM debian:12-slim
+FROM debian:12-slim, 12.5-slim, bookworm-20240408-slim, bookworm-slim
 
 EXPOSE 8080-8180
 EXPOSE 5678-5688
