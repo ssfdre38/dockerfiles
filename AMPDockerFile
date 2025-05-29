@@ -50,11 +50,12 @@ RUN mkdir -p /usr/share/man/man1 && \
     sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
     locale-gen && \
     wget -q https://repo.cubecoders.com/ampinstmgr-latest.tgz && \
-    tar -xf ampinstmgr-latest.tgz -C && \
+    mkdir -p /opt/cubecoders/amp && \
+    tar -xf ampinstmgr-latest.tgz -C /opt/cubecoders/amp && \
     rm ampinstmgr-latest.tgz && \
     cd /opt/cubecoders/amp && \
     devBuildNum=$(wget -qO- https://downloads.cubecoders.com/AMP/manifest.json | jq -r .streams.Development.versions[0].latestBuild) && \
-    rm ampinstmgr_x86_64.zip && \
+    if [ -f ampinstmgr_x86_64.zip ]; then rm ampinstmgr_x86_64.zip; fi && \
     wget "https://downloads.cubecoders.com/AMP/Development/${devBuildNum}/ampinstmgr_x86_64.zip" && \
     echo A | unzip ampinstmgr_x86_64.zip && \
     chmod +x ./ampinstmgr
