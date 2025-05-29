@@ -18,7 +18,7 @@ RUN echo "export WINEPREFIX=/home/amp/.wine" >> /home/amp/.bashrc && \
     echo "export WINE_LARGE_ADDRESS_AWARE=1" >> /home/amp/.bashrc && \
     echo "export WINE_NO_WAYLAND=1" >> /home/amp/.bashrc && \
     echo "export WINE_USE_VKD3D=1" >> /home/amp/.bashrc && \
-    echo "export WINE_USE_VKMS=1" >> /home/amp/.bashrc && \
+    echo "export WINE_USE_VKMS=1" >> /home/amp/.bashrc
 
 ENTRYPOINT ["/ampstart.sh"]
 CMD []
