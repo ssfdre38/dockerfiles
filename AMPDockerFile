@@ -1,6 +1,10 @@
 # AMP Dockerfile
 
-FROM debian:12-slim, 12.11-slim, bookworm-20250520-slim, bookworm-slim
+FROM debian:12.11-slim
+LABEL maintainer="Daniel Elliott" \
+      description="AMP (Application Management Panel) base image for running game servers and applications." \
+      version="1.0"
+LABEL org.opencontainers.image.authors="Daniel Elliott <
 
 ENV AMP_CONTAINER="DOCKER"
 ENV LD_LIBRARY_PATH="./:/opt/cubecoders/amp/:/AMP/"
