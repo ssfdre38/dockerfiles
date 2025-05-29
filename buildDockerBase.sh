@@ -10,6 +10,7 @@ docker build --rm -f AMPDockerFileRedBot -t ssfdre38/ampdocker:RedBot .
 docker build --rm -f AMPDockerFileGo -t ssfdre38/ampdocker:go .
 docker build --rm -f AMPDockerFileLang -t ssfdre38/ampdocker:lang .
 docker build --rm -f AMPDockerFilePython312 -t ssfdre38/ampdocker:python312 .
+docker build --rm -f AMPDockerFilePython312 -t ssfdre38/ampdocker:python313 .
 docker build --rm -f AMPDockerFileWine9 -t ssfdre38/ampdocker:wine9 .
 
 #docker push ssfdre38/ampdocker
