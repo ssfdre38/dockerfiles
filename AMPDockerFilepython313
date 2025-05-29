@@ -1,4 +1,4 @@
-FROM cubecoders/ampbase
+FROM ssfdre38/ampdocker
 
 RUN cd /tmp/ \
     && wget https://www.python.org/ftp/python/3.13.3/Python-3.13.3.tgz \
