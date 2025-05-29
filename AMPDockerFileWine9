@@ -1,4 +1,4 @@
-FROM ssfdre38/ampdocker
+FROM cubecoders/ampbase
 
 RUN dpkg --add-architecture i386 \
     && mkdir -pm755 /etc/apt/keyrings \
