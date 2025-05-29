@@ -8,7 +8,6 @@ LABEL maintainer="Daniel Elliott" \
 LABEL org.opencontainers.image.authors="Daniel Elliott" \
       org.opencontainers.image.description="AMP (Application Management Panel) base image for running game servers and applications." \
       org.opencontainers.image.version="1.0" \
-      org.opencontainers.image.created=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
       org.opencontainers.image.url="https://cubecoders.com/AMP" \
       org.opencontainers.image.documentation="https://discourse.cubecoders.com/" 
 # Set the timezone to UTC

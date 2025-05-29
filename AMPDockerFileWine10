@@ -1,10 +1,20 @@
-FROM cubecoders/ampbase
+FROM ssfdre38/ampdocker
+LABEL maintainer="ssfdre38"
+LABEL description="AMP Docker image with Wine 10 support"
+LABEL version="1.0"
+LABEL org.opencontainers.image.authors="ssfdre38" \
+      org.opencontainers.image.description="AMP Docker image with Wine 10 support" \
+      org.opencontainers.image.version="1.0" 
 
-RUN dpkg --add-architecture i386 && apt-get update && apt-get -y upgrade  \
+RUN dpkg --add-architecture i386 \
+    && sed -i 's/main/main contrib non-free/g' /etc/apt/sources.list \
+    && apt update && apt -y upgrade \
+    && apt install -y --no-install-recommends gnupg2 software-properties-common ca-certificates wget \
     && wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources \
     && wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key \
     && apt update \
-    && apt install -y --install-recommends winehq-stable \
+    && apt install -y --install-recommends winehq-stable wine-stable wine32 wine64 libwine libwine:i386 fonts-wine \
+    && apt --fix-broken install -y \
     && apt clean \
     && rm -rf /var/lib/apt/lists/*
 
