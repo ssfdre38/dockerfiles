@@ -1,6 +1,6 @@
 # AMP Dockerfile
 
-FROM debian:12-slim, 12.5-slim, bookworm-20240408-slim, bookworm-slim
+FROM debian:12-slim, 12.11-slim, bookworm-20250520-slim, bookworm-slim
 
 ENV AMP_CONTAINER="DOCKER"
 ENV LD_LIBRARY_PATH="./:/opt/cubecoders/amp/:/AMP/"

@@ -1,24 +1,12 @@
 FROM cubecoders/ampbase
 
-RUN dpkg --add-architecture i386 && apt-get update && apt-get -y upgrade && \
-    sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources \
-    && sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key \
-    && apt-get update && \
-    apt-get install -y winehq-stable wine32 wine64 wine-binfmt python3 winbind libwine libwine:i386 fonts-wine xauth xvfb \
-    && apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-RUN echo "export WINEPREFIX=/home/amp/.wine" >> /home/amp/.bashrc && \
-    echo "export WINEARCH=win32" >> /home/amp/.bashrc && \
-    echo "export DISPLAY=:0" >> /home/amp/.bashrc && \
-    echo "export XAUTHORITY=/home/amp/.Xauthority" >> /home/amp/.bashrc && \
-    echo "export PATH=$PATH:/usr/lib/wine:/usr/lib/i386-linux-gnu/wine" >> /home/amp/.bashrc && \
-    echo "export LD_LIBRARY_PATH=/usr/lib/wine:/usr/lib/i386-linux-gnu/wine" >> /home/amp/.bashrc && \
-    echo "export WINEDEBUG=-all" >> /home/amp/.bashrc && \
-    echo "export WINEESYNC=1" >> /home/amp/.bashrc && \
-    echo "export WINE_LARGE_ADDRESS_AWARE=1" >> /home/amp/.bashrc && \
-    echo "export WINE_NO_WAYLAND=1" >> /home/amp/.bashrc && \
-    echo "export WINE_USE_VKD3D=1" >> /home/amp/.bashrc && \
-    echo "export WINE_USE_VKMS=1" >> /home/amp/.bashrc
+RUN dpkg --add-architecture i386 && apt-get update && apt-get -y upgrade  \
+    && wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources \
+    && wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key \
+    && apt update \
+    && apt install -y --install-recommends winehq-stable \
+    && apt clean \
+    && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/ampstart.sh"]
 CMD []
