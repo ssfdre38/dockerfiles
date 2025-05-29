@@ -1,6 +1,7 @@
 # AMP Dockerfile
 
 FROM debian:12.11-slim
+FROM debian:bookworm-slim AS anotherstage
 LABEL maintainer="Daniel Elliott" \
       description="AMP (Application Management Panel) base image for running game servers and applications." \
       version="1.0"
