@@ -59,7 +59,7 @@ RUN mkdir -p /usr/share/man/man1 && \
     if [ -f ampinstmgr_x86_64.zip ]; then rm ampinstmgr_x86_64.zip; fi && \
     wget "https://downloads.cubecoders.com/AMP/Development/${devBuildNum}/ampinstmgr_x86_64.zip" && \
     echo A | unzip ampinstmgr_x86_64.zip && \
-    chmod +x ./ampinstmgr
+    chmod +x ./ampinstmgr.sh
 
 ENV LANG="en_US.UTF-8"
 ENV LANGUAGE="en_US:en"
