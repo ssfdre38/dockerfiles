@@ -1,17 +1,20 @@
 # AMP Dockerfile
 
 FROM debian:12.11-slim
-# Set the maintainer label and description
+
 LABEL maintainer="Daniel Elliott" \
       description="AMP (Application Management Panel) base image for running game servers and applications." \
       version="1.0"
 LABEL org.opencontainers.image.authors="Daniel Elliott" \
       org.opencontainers.image.description="AMP (Application Management Panel) base image for running game servers and applications." \
       org.opencontainers.image.version="1.0" \
+      org.opencontainers.image.created=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
       org.opencontainers.image.url="https://cubecoders.com/AMP" \
-      org.opencontainers.image.documentation="https://discourse.cubecoders.com/" \
-      org.opencontainers.image.source="https://github.com/ssfdre38/dockerfiles"
-      
+      org.opencontainers.image.documentation="https://discourse.cubecoders.com/" 
+# Set the timezone to UTC
+ENV TZ=UTC
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 ENV AMP_CONTAINER="DOCKER"
 ENV LD_LIBRARY_PATH="./:/opt/cubecoders/amp/:/AMP/"
 
@@ -51,15 +54,14 @@ RUN mkdir -p /usr/share/man/man1 && \
     sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
     locale-gen && \
     wget -q https://repo.cubecoders.com/ampinstmgr-latest.tgz && \
-    mkdir -p /opt/cubecoders/amp && \
-    tar -xf ampinstmgr-latest.tgz -C /opt/cubecoders/amp && \
+    tar -xf ampinstmgr-latest.tgz -C && \
     rm ampinstmgr-latest.tgz && \
     cd /opt/cubecoders/amp && \
     devBuildNum=$(wget -qO- https://downloads.cubecoders.com/AMP/manifest.json | jq -r .streams.Development.versions[0].latestBuild) && \
-    if [ -f ampinstmgr_x86_64.zip ]; then rm ampinstmgr_x86_64.zip; fi && \
+    rm ampinstmgr_x86_64.zip && \
     wget "https://downloads.cubecoders.com/AMP/Development/${devBuildNum}/ampinstmgr_x86_64.zip" && \
     echo A | unzip ampinstmgr_x86_64.zip && \
-    chmod +x ./ampinstmgr.sh
+    chmod +x ./ampinstmgr
 
 ENV LANG="en_US.UTF-8"
 ENV LANGUAGE="en_US:en"
