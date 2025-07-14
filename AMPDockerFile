@@ -57,9 +57,9 @@ RUN mkdir -p /usr/share/man/man1 && \
     tar -xf ampinstmgr-latest.tgz -C && \
     rm ampinstmgr-latest.tgz && \
     cd /opt/cubecoders/amp && \
-    devBuildNum=$(wget -qO- https://downloads.cubecoders.com/AMP/manifest.json | jq -r .streams.Development.versions[0].latestBuild) && \
+    devBuildNum=$(wget -qO- https://downloads.cubecoders.com/AMP/manifest.json | jq -r .streams.Mainline.versions[0].latestBuild) && \
     rm ampinstmgr_x86_64.zip && \
-    wget "https://downloads.cubecoders.com/AMP/Development/${devBuildNum}/ampinstmgr_x86_64.zip" && \
+    wget "https://downloads.cubecoders.com/AMP/Mainline/${devBuildNum}/ampinstmgr_x86_64.zip" && \
     echo A | unzip ampinstmgr_x86_64.zip && \
     chmod +x ./ampinstmgr
 
